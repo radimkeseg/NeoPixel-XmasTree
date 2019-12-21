@@ -1,6 +1,6 @@
-# NodeMCU esp8266-NeoPixel-XmasTree
+# ESP8266-NeoPixel-XmasTree
 
-ESP8266 NeoPixel XmasTree
+Neopixel homemade Matrix conic Display - animated XmasTree
 
 ## Setup
 
