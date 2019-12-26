@@ -53,8 +53,9 @@ class Matrix : virtual public ITimer
       void setPixel(int x, int y, uint32_t color, boolean mix_color);
       void setPixel(int x, int y, uint32_t color){ setPixel(x, y, color, false);}
 
-      uint16_t numPixels(void) const {if(strip==NULL) return 0; return strip->numPixels();};
-      uint16_t numPixelsInRow(void) const {return pixels_in_row;};
+      uint16_t numPixels(void) const {if(strip==NULL) return 0; return strip->numPixels(); }
+      uint16_t numPixelsInRow(void) const {return pixels_in_row; }
+      uint16_t numRows(void) const {return numPixels() / numPixelsInRow(); }
       
 
 };

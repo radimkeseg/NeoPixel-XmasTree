@@ -35,10 +35,11 @@ SOFTWARE.
 #include "settings.h"
 #include "embHTML.h"
 #include "ITimer.h"
+
 #include "Matrix.h"
 #include "EfXRainbow.h"
 #include "EfXSpike.h"
-
+#include "EfXSpiral.h"
 
 // HOSTNAME for OTA update
 #define HOSTNAME "WSC-ESP8266-"
@@ -57,13 +58,14 @@ ESP8266HTTPUpdateServer httpUpdater;
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(180, NEOPIXEL_DATA_IN_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(8*13, NEOPIXEL_DATA_IN_PIN, NEO_GRB + NEO_KHZ800);
 
 CustomSettings cs; 
 
-Matrix matrix(&strip, 10);
+Matrix matrix(&strip, 13);
 EfxRainbow efx_rainbow(&matrix);
 EfxSpike efx_spike(&matrix);
+EfxSpiral efx_spiral(&matrix);
 
 /*prototypes*/
 void updateData();
@@ -185,9 +187,10 @@ void loop() {
   strip.setBrightness(cs.settings.brightness);
 
   
-  // spike effect by the full hour
-  if(matrix.getMinsInt() == 0 && matrix.getSecsInt()<30){
-    efx_spike.Show(); 
+  // todo effect by the full hour ... later
+  if(/*matrix.getMinsInt() == 0 &&*/ matrix.getSecsInt()<30){
+    if( (matrix.getMinsInt()%2) == 0) efx_spike.Show(); 
+    else efx_spiral.Show();
     clear = false;
   }else{
     efx_rainbow.Show();
@@ -206,7 +209,7 @@ void loop() {
     lastUpdate = stamp;  
   }
   
-  delay(10);
+  delay(50);
 }
 
 
