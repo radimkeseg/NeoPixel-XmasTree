@@ -42,7 +42,7 @@ const char PAGE_INDEX[] PROGMEM = R"=====(
 </style>
 
 <body>
-<h1>NeoPixel Cuckoo</h1>
+<h1>NeoPixel xMasTree</h1>
 <p>
 Neopixel XmasTree with an ESP8266 IoT device
 <p/>
