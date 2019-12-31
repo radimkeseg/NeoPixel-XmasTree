@@ -28,10 +28,6 @@ void EfxSpike::Show(boolean clear_background, boolean mix_colors){
   for(int y=0;y<matrix->numRows();y++){
     for(int x=0;x<matrix->numPixelsInRow();x++){
          matrix->setPixel(x, y, x<(int)j ? Adafruit_NeoPixel::Color(255, 0, 0): (x==(int)j ? Adafruit_NeoPixel::Color(255*(j-x), 0, 0) : Adafruit_NeoPixel::Color(0, 0, 0)) ); 
-         if(x==0 && y==0){
-           Serial.print("x=");Serial.print(x);     
-           Serial.print(" j=");Serial.println(j);     
-         }
     }
   }
   
