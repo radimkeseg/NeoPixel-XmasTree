@@ -23,9 +23,9 @@ SOFTWARE.
 void EfxSpiral::Show(boolean clear_background, boolean mix_colors){
   if(matrix==NULL) return;
 
-  if( j>(matrix->numPixelsInRow()) && incr>0 || j<0 && incr<0  ) incr*=-1;
+  if( j>=(matrix->numPixelsInRow()) && incr>0 || j<=0 && incr<0  ) incr*=-1;
   j+=incr;
-  for(int y=0;y<(matrix->numPixels()/matrix->numPixelsInRow());y++){
+  for(int y=0;y<matrix->numRows();y++){
     for(int x=0;x<matrix->numPixelsInRow();x++){
          if(y%4 == 0) matrix->setPixel(x, (int)(y+x)% matrix->numRows(), x<(int)j ? Adafruit_NeoPixel::Color(0, 255, 0): (x==(int)j ? Adafruit_NeoPixel::Color(0, 255*(j-x), 0) : Adafruit_NeoPixel::Color(0, 0, 0)) ); 
          else matrix->setPixel(x, (int)(y+x)% matrix->numRows(), Adafruit_NeoPixel::Color(0, 0, 0));

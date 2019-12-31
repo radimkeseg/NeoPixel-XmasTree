@@ -23,9 +23,9 @@ SOFTWARE.
 void EfxSpike::Show(boolean clear_background, boolean mix_colors){
   if(matrix==NULL) return;
 
-  if( j>(matrix->numPixelsInRow()) && incr>0 || j<0 && incr<0  ) incr*=-1;
+  if( j>=(matrix->numPixelsInRow()) && incr>0 || j<=0 && incr<0  ) incr*=-1;
   j+=incr;
-  for(int y=0;y<(matrix->numPixels()/matrix->numPixelsInRow());y++){
+  for(int y=0;y<matrix->numRows();y++){
     for(int x=0;x<matrix->numPixelsInRow();x++){
          matrix->setPixel(x, y, x<(int)j ? Adafruit_NeoPixel::Color(255, 0, 0): (x==(int)j ? Adafruit_NeoPixel::Color(255*(j-x), 0, 0) : Adafruit_NeoPixel::Color(0, 0, 0)) );      
     }
